@@ -1,8 +1,11 @@
 import React from 'react';
 import { Paper, Typography, Box } from '@mui/material';
 import { formatDate } from '../utils/formatDate';
+import { useTheme } from '../context/ThemeContext';
 
 const Message = ({ message }) => {
+  const { darkMode } = useTheme();
+
   return (
     <Box
       sx={{
@@ -16,8 +19,12 @@ const Message = ({ message }) => {
         sx={{
           p: 2,
           maxWidth: '70%',
-          backgroundColor: message.type === 'user' ? 'primary.light' : 'grey.100',
-          color: message.type === 'user' ? 'white' : 'text.primary'
+          backgroundColor: message.type === 'user' 
+            ? (darkMode ? '#1976d2' : '#90caf9')
+            : (darkMode ? '#424242' : '#f5f5f5'),
+          color: message.type === 'user' 
+            ? 'white' 
+            : (darkMode ? 'white' : 'inherit')
         }}
       >
         <Typography variant="body1">{message.text}</Typography>

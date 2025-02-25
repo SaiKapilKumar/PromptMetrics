@@ -1,0 +1,13 @@
+.chat-sidebar {
+  background-color: white;
+  border-right: 1px solid #e0e0e0;
+  height: 100%;
+}
+
+.chat-sidebar .MuiListItem-root {
+  padding: 12px 20px;
+}
+
+.chat-sidebar .MuiListItemIcon-root {
+  min-width: 40px;
+}

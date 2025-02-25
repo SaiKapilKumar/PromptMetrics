@@ -1,65 +1,44 @@
 import React from 'react';
-import { 
-  Typography, 
-  Paper, 
-  Grid, 
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider
-} from '@mui/material';
-import {
-  Timeline,
-  TrendingUp,
-  Assessment
-} from '@mui/icons-material';
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { TrendingUpIcon, TimelineIcon, BarChart3Icon } from "lucide-react"
 
 const Dashboard = () => {
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        Dashboard
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardHeader 
-              avatar={<TrendingUp color="primary" />}
-              title="Metrics Overview"
-            />
-            <Divider />
-            <CardContent>
-              {/* Add metrics content */}
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardHeader 
-              avatar={<Timeline color="secondary" />}
-              title="Recent Activity"
-            />
-            <Divider />
-            <CardContent>
-              {/* Add activity content */}
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Card>
-            <CardHeader 
-              avatar={<Assessment color="primary" />}
-              title="Statistics"
-            />
-            <Divider />
-            <CardContent>
-              {/* Add statistics content */}
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
+    <div className="p-6">
+      <h1 className="mb-6 text-2xl font-bold">Dashboard</h1>
+      
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-2">
+            <TrendingUpIcon className="text-primary" />
+            <h2 className="text-lg font-semibold">Metrics Overview</h2>
+          </CardHeader>
+          <CardContent>
+            {/* Add metrics content */}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-2">
+            <TimelineIcon className="text-primary" />
+            <h2 className="text-lg font-semibold">Recent Activity</h2>
+          </CardHeader>
+          <CardContent>
+            {/* Add activity content */}
+          </CardContent>
+        </Card>
+
+        <Card className="md:col-span-2">
+          <CardHeader className="flex flex-row items-center gap-2">
+            <BarChart3Icon className="text-primary" />
+            <h2 className="text-lg font-semibold">Statistics</h2>
+          </CardHeader>
+          <CardContent>
+            {/* Add statistics content */}
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 };
 
