@@ -6,15 +6,26 @@ import { ChatPanel } from "@/components/chat/chat-panel";
 import { Menu } from "lucide-react";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
-import Dashboard from "@/components/layout/dashboard"; // <-- Our dashboard content
+import Dashboard from "@/components/layout/dashboard";
+import { SidebarProvider, useSidebar } from "@/lib/context/sidebar-context";
 
-export default function Home() {
+function MainLayout() {
+  const { isSidebarOpen } = useSidebar();
+
   return (
     <div className="min-h-screen flex">
-      {/* Sidebar - Desktop */}
-      <div className="hidden lg:block w-64 border-r">
-        <Sidebar />
-      </div>
+      {/* Sidebar - conditionally rendered based on toggle state */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 z-40 lg:relative lg:z-auto">
+          {/* Backdrop for mobile */}
+          <div className="fixed inset-0 bg-black/30 lg:hidden" onClick={() => useSidebar().closeSidebar()}></div>
+          
+          {/* Sidebar */}
+          <div className="fixed inset-y-0 left-0 w-64 bg-background z-50 lg:relative">
+            <Sidebar />
+          </div>
+        </div>
+      )}
 
       {/* Main content area */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
@@ -49,5 +60,13 @@ export default function Home() {
         <ChatPanel />
       </aside>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <SidebarProvider>
+      <MainLayout />
+    </SidebarProvider>
   );
 }

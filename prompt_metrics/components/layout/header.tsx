@@ -1,3 +1,4 @@
+"use client";
 import { Search, Bell, Menu } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,27 +13,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "./sidebar";
+import { useSidebar } from "@/lib/context/sidebar-context";
 
 export function Header() {
+  const { toggleSidebar } = useSidebar();
+
   return (
     <header className="border-b px-4 py-3 flex items-center justify-between">
-      {/* Mobile Menu */}
-      <div className="lg:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle sidebar</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[250px] sm:w-[300px]">
-            <Sidebar />
-          </SheetContent>
-        </Sheet>
+      {/* Burger Menu for both mobile and desktop */}
+      <div className="flex items-center">
+        <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+          <Menu className="h-5 w-5" />
+          <span className="sr-only">Toggle sidebar</span>
+        </Button>
+        
+        {/* Logo */}
+        <div className="font-semibold ml-2">PromptMetrics</div>
       </div>
-      
-      {/* Logo for mobile */}
-      <div className="lg:hidden font-semibold">PromptMetrics</div>
       
       {/* Search */}
       <div className="hidden md:flex flex-1 max-w-md ml-4">
