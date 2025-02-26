@@ -10,24 +10,24 @@ import Dashboard from "@/components/layout/dashboard";
 import { SidebarProvider, useSidebar } from "@/lib/context/sidebar-context";
 
 function MainLayout() {
-  const { isSidebarOpen } = useSidebar();
+  const { isOpen, closeSidebar } = useSidebar();
 
   return (
     <div className="min-h-screen flex">
       {/* Sidebar - conditionally rendered based on toggle state */}
-      {isSidebarOpen && (
-        <div className="fixed inset-0 z-40 lg:relative lg:z-auto">
+      {isOpen && (
+        <div className="fixed inset-0 z-40 lg:static lg:z-auto">
           {/* Backdrop for mobile */}
-          <div className="fixed inset-0 bg-black/30 lg:hidden" onClick={() => useSidebar().closeSidebar()}></div>
+          <div className="fixed inset-0 bg-black/30 lg:hidden" onClick={closeSidebar}></div>
           
-          {/* Sidebar */}
-          <div className="fixed inset-y-0 left-0 w-64 bg-background z-50 lg:relative">
+          {/* Sidebar container */}
+          <div className="fixed inset-y-0 left-0 w-64 z-50 lg:static lg:w-64 lg:block lg:h-screen">
             <Sidebar />
           </div>
         </div>
       )}
 
-      {/* Main content area */}
+      {/* Rest of your component remains the same */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         {/* Header */}
         <Header />

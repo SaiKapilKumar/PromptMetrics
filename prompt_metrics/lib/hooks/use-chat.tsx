@@ -102,7 +102,7 @@ export function useChat() {
   const createNewChat = useCallback(() => {
     const newChat: Chat = {
       id: Date.now().toString(),
-      title: "PromptMetrics ChatBot",
+      title: "Playground",
       date: formatDate(new Date()),
       messages: []
     };

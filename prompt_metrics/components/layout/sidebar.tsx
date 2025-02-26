@@ -1,4 +1,5 @@
 "use client";
+import { useSidebar } from "@/lib/context/sidebar-context";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -10,9 +11,7 @@ import {
   PieChart,
   MessageSquare,
   Users,
-  X,
 } from "lucide-react";
-import { useSidebar } from "@/lib/context/sidebar-context";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
@@ -24,17 +23,16 @@ const navigation = [
 ];
 
 export function Sidebar() {
+  const { isOpen } = useSidebar();
   const pathname = usePathname();
-  const { closeSidebar } = useSidebar();
+
+  if (!isOpen) return null; // Hide sidebar when closed
 
   return (
     <div className="flex h-full flex-col bg-muted/20">
       <div className="px-3 py-4">
-        <div className="flex h-10 items-center px-3 justify-between">
+        <div className="flex h-10 items-center px-3">
           <span className="text-lg font-semibold">PromptMetrics</span>
-          <Button variant="ghost" size="icon" onClick={closeSidebar} className="lg:hidden">
-            <X className="h-4 w-4" />
-          </Button>
         </div>
         <nav className="mt-8 space-y-1">
           {navigation.map((item) => (
@@ -48,7 +46,6 @@ export function Sidebar() {
                   : "hover:bg-muted"
               )}
               asChild
-              onClick={closeSidebar}
             >
               <Link href={item.href}>
                 <item.icon className="h-5 w-5" />

@@ -14,6 +14,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "./sidebar";
 import { useSidebar } from "@/lib/context/sidebar-context";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   const { toggleSidebar } = useSidebar();
@@ -45,6 +46,8 @@ export function Header() {
       
       {/* User Menu */}
       <div className="flex items-center gap-4">
+        <ThemeToggle />
+        
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="h-5 w-5" />
           <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-primary"></span>
