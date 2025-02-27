@@ -1,5 +1,4 @@
 "use client";
-import { useSidebar } from "@/lib/context/sidebar-context";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -23,10 +22,7 @@ const navigation = [
 ];
 
 export function Sidebar() {
-  const { isOpen } = useSidebar();
   const pathname = usePathname();
-
-  if (!isOpen) return null; // Hide sidebar when closed
 
   return (
     <div className="flex h-full flex-col bg-muted/20">

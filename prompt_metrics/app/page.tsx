@@ -6,28 +6,17 @@ import { ChatPanel } from "@/components/chat/chat-panel";
 import { Menu } from "lucide-react";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
-import Dashboard from "@/components/layout/dashboard";
-import { SidebarProvider, useSidebar } from "@/lib/context/sidebar-context";
+import Dashboard from "@/components/layout/dashboard"; // <-- Our dashboard content
 
-function MainLayout() {
-  const { isOpen, closeSidebar } = useSidebar();
-
+export default function Home() {
   return (
     <div className="min-h-screen flex">
-      {/* Sidebar - conditionally rendered based on toggle state */}
-      {isOpen && (
-        <div className="fixed inset-0 z-40 lg:static lg:z-auto">
-          {/* Backdrop for mobile */}
-          <div className="fixed inset-0 bg-black/30 lg:hidden" onClick={closeSidebar}></div>
-          
-          {/* Sidebar container */}
-          <div className="fixed inset-y-0 left-0 w-64 z-50 lg:static lg:w-64 lg:block lg:h-screen">
-            <Sidebar />
-          </div>
-        </div>
-      )}
+      {/* Sidebar - Desktop */}
+      <div className="hidden lg:block w-64 border-r">
+        <Sidebar />
+      </div>
 
-      {/* Rest of your component remains the same */}
+      {/* Main content area */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         {/* Header */}
         <Header />
@@ -60,13 +49,5 @@ function MainLayout() {
         <ChatPanel />
       </aside>
     </div>
-  );
-}
-
-export default function Home() {
-  return (
-    <SidebarProvider>
-      <MainLayout />
-    </SidebarProvider>
   );
 }
